@@ -18,14 +18,8 @@
 <link href="assets/fullcal/lib/main.css" rel="stylesheet" />
 	
 
-
-
-
-
 </head>
-
 <body>
-
 
 
 <style type="text/css">
@@ -120,12 +114,10 @@
 			<div id="textcolor-group" class="form-group">
 				<label class="control-label" for="Salle">Salle</label>
 				<select id="salle" name="salle" class="form-control" disabled="true">
-    				<option value=1>Salle Conseil</option>
-    				<option value=2>Salle 19 </option>
-    				<option value=4>Salle 2</option>
+    				
 					<option value=5>Warneton Conseil</option>
 					<option value=6>Warneton Expo</option>
-					<option value=7>Ploegsteert</option>
+				
  				</select>
 			</div>
 			<div id="textcolor-group" class="form-group">
@@ -176,7 +168,7 @@
 	  <div class="col-lg-8">
 	  		<div class="card border-primary mt-2 mx-2 ">
   					<div class="card-header text-white bg-primary ">
-    					<h5> <i class="fas fa-user-friends"></i> Calendrier Salles de Réunion</h5>
+    					<h5> <i class="fas fa-user-friends"></i> Planning Salles HDV Warneton </h5>
   					</div>
 				 
 				 	 <div class="card-body">
@@ -255,13 +247,7 @@
 	calendar.changeView('dayGridWeek');}
                     
                          },
-		  myCustomButton2: {
-          text: 'vue ligne',
-          click: function () {//alert('Vous allez changer un truc' );
-	calendar.setOption('height', 250);
-	calendar.changeView('resourceTimelineDay');}
-                    
-                         },
+		
 		 myCustomButton3: {
           text: 'vue outlook',
           click: function () {//alert('Vous allez changer un truc' );
@@ -280,7 +266,7 @@
       headerToolbar: {
         left: 'today prev,next',
         center: 'title',
-        right: 'myCustomButton2 myCustomButton3 myCustomButton1 myCustomButton4'
+        right: ' myCustomButton3 myCustomButton1 myCustomButton4'
       },
       //initialView: 'resourceTimelineDay',
 	  initialView: 'resourceTimeGridDay',
@@ -403,13 +389,10 @@
       
       resourceAreaHeaderContent: 'Salles',
       resources: [
-        { id: '1', title: 'Salle du conseil' },
-        { id: '2', title: 'Salle 19' },
-        { id: '4', title: 'Salle 2' },
+      
 		{ id: '5', title: 'Warneton Conseil' },
 		{ id: '6', title: 'Warneton Expo' },
-		{ id: '7', title: 'Ploegsteert' },
-        
+		   
      
       ],
       events: 'test.json',
