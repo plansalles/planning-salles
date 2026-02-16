@@ -1,0 +1,484 @@
+
+
+
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="./css/bootstrap.min.css" rel="stylesheet">
+<script src="./js/jquery-3.4.1.js"></script>
+<script src="./js/jquery-ui-1.12.1/jquery-ui.js"></script>
+<script src="./js/jquery-ui-1.12.1/datepicker-fr.js"></script>
+<script src="./js/timepicker/timepicker.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="assets/fullcal/lib/main.js"></script>
+<script src="assets/fullcal/lib/locales/fr.js"></script>
+<link href="css/fawesome/fontawesome-all.css" rel="stylesheet" />
+<link rel="stylesheet" href="./js/jquery-ui-1.12.1/jquery-ui.css">
+<link rel="stylesheet" href="./js/timepicker/timepicker.css">
+
+<link href="assets/fullcal/lib/main.css" rel="stylesheet" />
+	
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+<style type="text/css">
+
+.fc th {
+    text-align: center;
+    background: #007bff;
+    color: #ffffff;
+}
+.fc .fc-toolbar-title {
+    font-size: 1.75em;
+    margin: 0;
+    color: #007bff;
+}
+.fc .fc-highlight {
+    background: rgba(0, 0,0, 0.3);
+    
+  }
+.table-bordered td, .table-bordered th {
+    border: 1px solid #000000;
+}
+.fc-direction-ltr .fc-timegrid-col-events {
+    margin: unset;
+}
+.fc-day-sun { background-color:#cbe4ff;
+	 }
+.fc-day-sat { background-color:#cbe4ff;  }
+</style>
+
+
+<!-- Contenu de la page -->
+<div id="wrapper">
+	<div class="row">
+      <div class="col-lg-2"> 
+	  <!-- Button trigger modal -->
+
+
+
+<!-- Modal creation-->
+<div class="modal fade" id="creationModal" tabindex="-1" role="dialog" aria-labelledby="creationModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title" id="creationModalTitre">Calendrier des salles </h5> 
+		<!--<p>Date: <input type="text" id="datepicker" size="30"></p> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	  <div class="container-fluid">
+
+<form id="creationReservation" class="form-horizontal" method="POST">
+	<div class="row">
+
+		<div class="col-md-6">
+
+				<!-- <div id="eventId-group" class="form-group"> -->
+				<input type="hidden" class="form-control" id="persId" name="persId">
+				<input type="hidden" class="form-control" id="eventId" name="eventId">
+				<input type="hidden" class="form-control" id="sequence" name="sequence">
+					<!-- errors will go here -->
+					<!-- </div> -->
+		
+				<div id="titleEvent-group" class="form-group">
+					<label class="control-label" for="titleEvent">Intitulé Réunion</label>
+					<input type="text" class="form-control" id="titleEvent" name="titleEvent" autocomplete="off" readonly="true">
+							<!-- errors will go here -->
+				</div>
+
+				<div id="startdate-group" class="form-group">
+				<label class="control-label" for="startDate">Heure de début</label>
+				<input type="text" class="form-control" id="startDate" name="startDate" autocomplete="off" readonly="true">
+				<!-- errors will go here -->
+				</div>
+
+				<div id="enddate-group" class="form-group">
+				<label class="control-label" for="endDate">Heure de fin</label>
+				<input type="text" class="form-control " id="endDate" name="endDate" autocomplete="off" readonly="true" >
+									<!-- errors will go here -->
+				</div>
+
+		</div>
+
+		<div class="col-md-6">
+
+			<div id="date-group" class="form-group">
+				<label class="control-label" for="date">Date</label>
+				<input type="text" class="form-control" id="datepicker" name="dayDate" autocomplete="off" readonly="true">
+				<!-- errors will go here -->
+			</div>
+			<div id="textcolor-group" class="form-group">
+				<label class="control-label" for="Salle">Salle</label>
+				<select id="salle" name="salle" class="form-control" disabled="true">
+    				<option value=1>Salle Conseil</option>
+    				<option value=2>Salle 19 </option>
+    				<option value=4>Salle 2</option>
+					<option value=5>Warneton Conseil</option>
+					<option value=6>Warneton Expo</option>
+					<option value=7>Ploegsteert</option>
+ 				</select>
+			</div>
+			<div id="textcolor-group" class="form-group">
+			<label class="control-label" for="aides"> Réception </label>
+				<input type="checkbox" id="ckserrecep"  name="ckserrecep" onclick="" disabled="true" >
+				<label class="control-label" for="aides">Service Informatique</label>
+				<input type="checkbox" id="ckserinfo"   name="ckserinfo" onclick="" disabled="true">
+				
+			</div>
+	 	</div>
+			
+		<div class="col-md-12">
+			<div id="descriptionEvent-group" class="form-group">
+            	<label for="message-text" class="col-form-label">Description </label>
+            	<textarea form="creationReservation" class="form-control rounded-0" id="areadescription" name="areadescription" rows="6" readonly="true"></textarea>
+          	</div>
+	</div>
+	</form>	  
+</div>
+
+
+
+</div>
+
+      </div>
+      <div class="modal-footer">
+        <div id="bouttonAnnuler"> <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button></div>
+        
+		
+		
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal update-->
+
+	  
+	  
+	  </div> 
+			
+
+
+
+
+
+	  
+	  <div class="col-lg-8">
+	  		<div class="card border-primary mt-2 mx-2 ">
+  					<div class="card-header text-white bg-primary ">
+    					<h5> <i class="fas fa-user-friends"></i> Calendrier Salles de Réunion</h5>
+  					</div>
+				 
+				 	 <div class="card-body">
+				  
+						 <div id="calendar"></div>
+					 </div>
+		   </div>
+		
+			
+		</div>
+	     
+
+		
+			
+	     
+
+
+
+				
+		<!--Quatrieme COLONNE -->
+		<div class="col-lg-2">
+
+			
+		
+	   
+	   
+	   
+	   
+	   </div>	<!-- //FIN COlONNE 4 -->		
+	            
+                          
+                   
+
+    </div> <!--  FIN ROW -->
+			
+			  
+   </div>  <!-- FIN WRAPPER --> 
+
+	
+    <script>
+	var calendar;
+    document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    calendar = new FullCalendar.Calendar(calendarEl, {
+	  
+	  schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+	  locale: 'fr',
+      height: '800',
+      slotMinTime: '06:00:00',
+      slotMaxTime: '22:00:00',
+	  themeSystem: 'bootstrap',
+	  allDaySlot: false,
+      // slotDuration: '00:15:00',
+	  
+	  views: {
+    	month: { titleFormat: { year: 'numeric', month: 'long' }},
+		week: { titleFormat: { year: 'numeric', month: 'long',day: 'numeric'}},
+		day: { titleFormat: { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long'}}
+		    	
+      },
+
+       
+	  navLinks: true,
+     // slotLabelInterval: '00:30:00',
+	 eventOverlap: false,
+      editable: false, // enable draggable events
+      selectable: true,
+      aspectRatio: 1.8,
+      resourceAreaWidth: '15%',
+	  customButtons: {
+          myCustomButton1: {
+			text: 'Semaine',
+          click: function () {//alert('Vous allez changer un truc' );
+	calendar.setOption('height', 400);
+	calendar.changeView('dayGridWeek');}
+                    
+                         },
+		  myCustomButton2: {
+          text: 'vue ligne',
+          click: function () {//alert('Vous allez changer un truc' );
+	calendar.setOption('height', 250);
+	calendar.changeView('resourceTimelineDay');}
+                    
+                         },
+		 myCustomButton3: {
+          text: 'vue outlook',
+          click: function () {//alert('Vous allez changer un truc' );
+	calendar.setOption('height', 800);
+	calendar.changeView('resourceTimeGridDay');}
+                    
+                         },
+						 myCustomButton4: {
+          text: 'Mois',
+          click: function () {//alert('Vous allez changer un truc' );
+	calendar.setOption('height', 800);
+	calendar.changeView('dayGridMonth');}
+                    
+                         }
+      },
+      headerToolbar: {
+        left: 'today prev,next',
+        center: 'title',
+        right: 'myCustomButton2 myCustomButton3 myCustomButton1 myCustomButton4'
+      },
+      //initialView: 'resourceTimelineDay',
+	  initialView: 'resourceTimeGridDay',
+	
+	  eventResize: function(info) { 
+		
+	 
+	},
+	 
+	  select: function(info) { 
+	 
+	 },
+	  dateClick: function(info) {     //ce qui se passe quand on clique sur une date
+		
+		viderForm();
+		   
+		var dktl = new Date (info.date);
+				 //alert('dateclick ');
+
+        if (dktl.getHours() == 0){       //heure = 0 cad on a cliqué sur le jour du mois/semaine donc on va sur ce jour la
+            calendar.setOption('height', 800);
+		    calendar.changeView('resourceTimeGridDay');
+		    calendar.gotoDate( info.date );
+        }
+        else {  // on a cliqué sur une des heures du jour donc on ouvre fenetre pour encoder reservation e
+            
+           
+        }  
+	   
+      },
+
+	  navLinkDayClick: function(date,jevent) { // lorsque l'on clique sur numéro du jour dans calendrier -> go ce jour la
+		
+		calendar.setOption('height', 800);
+		calendar.changeView('resourceTimeGridDay');
+		calendar.gotoDate( date );
+
+	  },
+	  eventDrop: function(info) {
+		
+    
+  },
+	  
+	  eventClick: function(info) {
+		
+		if(info.event.extendedProps.serrecep < 99)
+		{
+		
+		var id = info.event.id;
+		
+		viderForm();
+        //alert('date creation: ' + info.event.start);
+		var d = new Date (info.event.start);
+		var f = new Date (info.event.end);
+		jour=d.getDate();
+		if(jour < 10)
+          jour = "0" + jour;
+		mois = d.getMonth()+1;
+		if(mois< 10)
+          mois = "0" + mois;
+
+
+	    var dateEvent = jour+'/'+mois+'/'+d.getFullYear();
+		//alert('date debut: ' + dateEvent);
+		var minutes = d.getMinutes();
+		if(minutes < 10)
+          minutes = "0" + minutes;
+		
+		var debut = d.getHours()+' '+minutes;
+
+		var minutes = f.getMinutes();
+		if(minutes < 10)
+          minutes = "0" + minutes;
+		
+		var fin = f.getHours()+' '+minutes;
+		var salleId = info.event.getResources()[0].id;
+	
+		document.getElementById("creationModalTitre").innerHTML = "Visualiser une réunion";
+		$('#persId').val(1);
+		$('#creationModal').modal('show');
+		$('#eventId').attr('value', info.event.id);
+		$('#sequence').attr('value', info.event.extendedProps.sequence);
+		$('#titleEvent').val(info.event.title);
+		$('#salle').val(salleId);
+		$('#startDate').attr('value', debut);
+		$('#endDate').attr('value', fin);
+		$('#datepicker').attr('value', dateEvent);
+		
+		$('#areadescription').val(info.event.extendedProps.description);
+		
+		if (info.event.extendedProps.serrecep == 1) {
+             $( "#ckserrecep" ).prop( "checked", true );
+			//alert('serrecep : ' + info.event.extendedProps.serrecep + "serinf : " + info.event.extendedProps.serinf); 
+        }
+		else
+		{ $( "#ckserrecep" ).prop( "checked", false); }
+
+		if (info.event.extendedProps.serinf == 1)
+		{ 
+			//alert('serrecep : ' + info.event.extendedProps.serrecep + "serinf : " + info.event.extendedProps.serinf);
+			$( "#ckserinfo" ).prop( "checked", true ); }
+		else
+		{ $( "#ckserinfo" ).prop( "checked", false); }
+
+
+		
+		
+		
+		
+		
+		
+        $('#creationModal').modal('show'); 
+	}
+	else
+	{
+	
+	}
+  },
+
+      
+      resourceAreaHeaderContent: 'Salles',
+      resources: [
+        { id: '1', title: 'Salle du conseil' },
+        { id: '2', title: 'Salle 19' },
+        { id: '4', title: 'Salle 2' },
+		{ id: '5', title: 'Warneton Conseil' },
+		{ id: '6', title: 'Warneton Expo' },
+		{ id: '7', title: 'Ploegsteert' },
+        
+     
+      ],
+      events: 'test.json',
+	  
+      
+    });
+
+    calendar.render();
+  });
+
+</script>
+<script>
+$('body').on('click', '.datetimepicker', function() {
+    $(this).not('.hasDateTimePicker').datetimepicker({
+        controlType: 'select',
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: "dd-mm-yy",
+        timeFormat: 'HH:mm:ss',
+        yearRange: "1900:+10",
+        showOn:'focus',
+        firstDay: 1
+    }).focus();
+});
+</script>
+
+  
+<script>
+
+function afficheModal() {
+	viderForm();
+	$('#creationModal').modal('show'); 
+	$('#bouttonSupprimer').hide();
+	$('#bouttonMaj').hide();
+	$('#bouttonCreer').show();
+	$('#bouttonValider').show();
+	$('#salle').attr('value','Salle Modif');
+
+}
+</script>
+
+
+
+
+<script>
+function viderForm() {
+	
+//	alert('Vous allez viderformter un truc !!!' );
+
+		  	
+		$('#eventId').removeAttr('value');
+		//alert ('#title event vaut'+ $('#titleEvent').val());
+		
+		$('#titleEvent').val("");
+		//alert ('#title event vaut maintenant '+ $('#titleEvent').val());
+		//$('#titleEvent').attr('value', '');
+
+		
+		//$('#salle')[salleId].selected = true;
+		$('#startDate').removeAttr('value');
+		$('#endDate').removeAttr('value');
+		$('#datepicker').removeAttr('value');
+		$("#ckserrecep" ).prop("checked", false);
+	    $("#ckserinfo" ).prop("checked", false);
+		$('#areadescription').val("");
+	
+}
+</script>
+
+
+
+</body>
