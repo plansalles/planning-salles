@@ -248,14 +248,14 @@
                     
                          },
 		
-		 myCustomButton3: {
+		 myCustomButton2: {
           text: 'vue outlook',
           click: function () {//alert('Vous allez changer un truc' );
 	calendar.setOption('height', 800);
 	calendar.changeView('resourceTimeGridDay');}
                     
                          },
-						 myCustomButton4: {
+		myCustomButton3: {
           text: 'Mois',
           click: function () {//alert('Vous allez changer un truc' );
 	calendar.setOption('height', 800);
@@ -266,10 +266,10 @@
       headerToolbar: {
         left: 'today prev,next',
         center: 'title',
-        right: ' myCustomButton3 myCustomButton1 myCustomButton4'
+        right: 'myCustomButton2 myCustomButton1 myCustomButton3'
       },
-      //initialView: 'resourceTimelineDay',
-	  initialView: 'resourceTimeGridDay',
+      initialView: 'dayGridMonth',
+	  //initialView: 'resourceTimeGridDay',
 	
 	  eventResize: function(info) { 
 		
