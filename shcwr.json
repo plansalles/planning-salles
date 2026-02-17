@@ -1,0 +1,52 @@
+
+<?php
+
+//Ficher de récuération des réunions pour utilisateurs (non coloré) - VER 1.0.2 - 30/10/24
+try
+{
+	$pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
+	$bdd = new PDO('mysql:host=localhost;dbname=Intranet', 'adminjo', '1tgp780Adm', array (PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
+
+}
+catch(Exception $e)
+{
+	echo "PDOException: " . $e->getMessage();
+}
+
+
+
+
+
+$requete = $bdd->prepare('Select * from  reservsalle where id_salle=6 or id_salle=5 '); // j'effectue ma requête SQL grâce au mot-clé LIKE
+$requete->execute();
+
+$array = array(); // on créé le tableau
+
+while($donnee = $requete->fetch()) // on effectue une boucle pour obtenir les données
+{
+    array_push($array, array( 'id' => $donnee['id_reservsalle'],'title' => $donnee['intitule'],'resourceId' => $donnee['id_salle'],'pers' => $donnee['id_personnels'],
+    'crea' => $donnee['date_creation'],'start' => $donnee['date_reserv'],'end' => $donnee['date_fin_reserv'],'color' => $donnee['color'],'couleur' => $donnee['color'],
+    'description' => $donnee['description'],'sequence' => $donnee['sequence'],'serinf' =>$donnee['ser_info'], 'serrecep' => $donnee['ser_recep']));
+    // echo $donnee['nom'];// et on ajoute celles-ci à notre tableau
+}
+
+
+$requete = $bdd->prepare('Select * from  feries '); // j'effectue ma requête SQL grâce au mot-clé LIKE
+$requete->execute();
+while($donnee = $requete->fetch())
+{
+   
+    list($hdeb, $mdeb) = explode(" ", $donnee['Date_feries']);
+// il faut ajouter pour chaque id de salle du programme une ligne 
+    
+    array_push($array, array( 'id' => $donnee['id_feries'].'ferie5','title' => $donnee['description_feries'],'resourceId' => '5','pers' => '1','start' => $hdeb,'end' => $hdeb,'color' => '#ff9f89','couleur' => '#ff9f89',
+    'description' => 'ferié','sequence' => '0','serinf' => '0', 'serrecep' => '999', 'display' =>'background'));
+    array_push($array, array( 'id' => $donnee['id_feries'].'ferie6','title' => $donnee['description_feries'],'resourceId' => '6','pers' => '1','start' => $hdeb,'end' => $hdeb,'color' => '#ff9f89','couleur' => '#ff9f89',
+    'description' => 'ferié','sequence' => '0','serinf' => '0', 'serrecep' => '999', 'display' =>'background'));
+    
+
+}
+
+    echo json_encode($array); // il n'y a plus qu'à convertir en JSON
+
+?>
