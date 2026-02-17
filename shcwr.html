@@ -219,6 +219,28 @@
 			  
    </div>  <!-- FIN WRAPPER --> 
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  fetch('test.json')
+    .then(response => {
+
+      const lastModified = response.headers.get('Last-Modified');
+
+      if (lastModified) {
+        const date = new Date(lastModified);
+        document.getElementById('lastUpdate').textContent =
+          date.toLocaleString('fr-FR');
+      }
+
+    })
+    .catch(error => {
+      console.log("Erreur récupération date :", error);
+    });
+
+});
+</script>
+
 	
     <script>
 	var calendar;
