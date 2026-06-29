@@ -346,8 +346,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	  
 	  eventClick: function(info) {
 		
-		if(info.event.extendedProps.serrecep < 99)
-		{
+		
 		
 		var id = info.event.id;
 		
@@ -391,33 +390,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		$('#areadescription').val(info.event.extendedProps.description);
 		
-		if (info.event.extendedProps.serrecep == 1) {
-             $( "#ckserrecep" ).prop( "checked", true );
-			//alert('serrecep : ' + info.event.extendedProps.serrecep + "serinf : " + info.event.extendedProps.serinf); 
-        }
-		else
-		{ $( "#ckserrecep" ).prop( "checked", false); }
-
-		if (info.event.extendedProps.serinf == 1)
-		{ 
-			//alert('serrecep : ' + info.event.extendedProps.serrecep + "serinf : " + info.event.extendedProps.serinf);
-			$( "#ckserinfo" ).prop( "checked", true ); }
-		else
-		{ $( "#ckserinfo" ).prop( "checked", false); }
-
-
-		
-		
-		
-		
-		
-		
-        $('#creationModal').modal('show'); 
-	}
-	else
-	{
+		$('#creationModal').modal('show'); 
 	
-	}
   },
 
       
